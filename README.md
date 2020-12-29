@@ -13,3 +13,7 @@ describe how each portal covers these issues and what reaction they are trying t
 
 Additionally I created classification model trained on data from most right and left leaning sites that can be used to initially classify how a piece of text adresses
 LBGT+ issues.
+
+Main code is in the file "Analiza przekazu prasowego na temat społeczności LGBT"
+Scraping codes are provided as Jupyter Notebooks in scrapers folder
+Data is stored in the data folder
