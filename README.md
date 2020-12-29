@@ -15,5 +15,7 @@ Additionally I created classification model trained on data from most right and 
 LBGT+ issues.
 
 Main code is in the file "Analiza przekazu prasowego na temat społeczności LGBT"
+
 Scraping codes are provided as Jupyter Notebooks in scrapers folder
+
 Data is stored in the data folder
