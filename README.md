@@ -1,12 +1,15 @@
 # NLP---Press-coverage-of-LBGT-issues
 
-Data preparation \n
+Data preparation 
+
 Data was scraped from searchpages of chosen polish portals. Datasets contain articles from 2020. Different notebook was created for scraping each page, as html code 
 differed between them. Scrapers are written using Python's BeautifulSoup package. All are avaliable for review in different folder.
 
-Project goals \n
+Project goals 
+
 Aim of this project was to preprocess scraped raw data and perform basic NLP to obtain material for further analysis. I created WordClouds of most used words in 
 coverage from each portal, computed word frequencies and found most common word collocations and collocations with specific LGBT+ related info. This data can be used to
-describe how each portal covers these issues and what reaction they are trying to provoke in readers. /n
+describe how each portal covers these issues and what reaction they are trying to provoke in readers. 
+
 Additionally I created classification model trained on data from most right and left leaning sites that can be used to initially classify how a piece of text adresses
 LBGT+ issues.
