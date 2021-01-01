@@ -16,6 +16,8 @@ LBGT+ issues.
 
 Main code is in the file "Analiza przekazu prasowego na temat społeczności LGBT"
 
-Scraping codes are provided as Jupyter Notebooks in scrapers folder
+Scraping codes are provided as Jupyter Notebooks in folder
 
 Data is stored in the data folder
+
+While setting up you should have main code in the same folder as data files
