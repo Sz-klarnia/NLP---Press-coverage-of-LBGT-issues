@@ -16,6 +16,8 @@ LBGT+ issues.
 
 Main code is in the file "Analiza przekazu prasowego na temat społeczności LGBT"
 
+Additional scripts are provided in file add_functions.py
+
 Scraping codes are provided as Jupyter Notebooks in folder
 
 Data is stored in the data folder
