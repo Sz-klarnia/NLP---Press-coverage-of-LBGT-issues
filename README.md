@@ -11,8 +11,8 @@ Aim of this project was to preprocess scraped raw data and perform basic NLP to 
 coverage from each portal, computed word frequencies and found most common word collocations and collocations with specific LGBT+ related info. This data can be used to
 describe how each portal covers these issues and what reaction they are trying to provoke in readers. 
 
-Additionally I created classification model trained on data from most right and left leaning sites that can be used to initially classify how a piece of text adresses
-LBGT+ issues.
+Additionally I created classification model trained on data from most right and left leaning sites that can be used to initially classify how a piece of press text adresses
+LBGT+ issues - with more hostility or support
 
 Main code is in the file "Analiza przekazu prasowego na temat społeczności LGBT"
 
