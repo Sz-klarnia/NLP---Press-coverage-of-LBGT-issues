@@ -221,40 +221,71 @@ def find_collocations_trigram(data,key=None):
 
 
 def clearing_texts(data):
-    # dictionary with terms to clear from texts
-    dict_replacements = {"czytaj także":"",
-                    "czytaj też wywiad":"",
-                    "wpolityce.pl":"",
-                    "wpolitycepl":"",
-                    "czytaj również tylko u nas":"",
-                    "nasz wywiad":"",
-                    "czytaj również":"",
-                    "niezaleznapl":"",
-                    "niezalezna.pl":"",
-                    "niezależna.pl":"",
-                    "niezależnapl":"",
-                    "regulamin":"",
-                    "portal":"",
-                    "portalu":"",
-                    "pch24pl":"",
-                    "Copyright 2020 by STOWARZYSZENIE KULTURY CHRZEŚCIJAŃSKIEJ IM KS PIOTRA SKARGI":"",
-                    "forum":"",
-                    "okopress":"",
-                    "oku":"",
-                    "press":"",
-                    "Ten artykuł nie powstałby gdyby nie wsparcie naszych darczyńców Dołącz do nich i pomóż nam publikować więcej tekstów które lubisz czytaćDziennikTematyPiszą dla nasPodcastyMultimediaNarkopolitykaO Krytyce PolitycznejKontaktWspieraj nas© 2020 Krytyka Polityczna Wszystkie prawa zastrzeżone | Partner technologiczny MeverywhereplSzukajKrajŚwiatKulturaGospodarkaPiekło kobietKoronawirusWybory w USAKlimatPracaWspieraj nas KsięgarniaO nasO Krytyce PolitycznejJesteśmy stowarzyszeniemKontaktAbout usŚwietlica w GdańskuŚwietlica w CieszynieJasna 10 Świetlica w WarszawieInstytutBaza ekspertek Akceptuję regulamin i politykę prywatności'":"",
-                    "krytyka":"",
-                    "krytyce":"",
-                    "polityczna":"",
-                    "politycznej":"",
-                    "dziękujemyklub inteligencji katolickiejfreta 2024a00227 warszawapolityka prywatności ***redakcja@\u200bkikwawplfacebookcommagazynkontaktplpoglądy wyrażane przez autorkii autorów tekstów nie są tożsamez poglądami wydawcymagazyn kontakt korzysta z dofinansowania pochodzącego z niwcrso w ramach proo3 na lata 20182030 dofinansowano ze środkówministra kulturyi dziedzictwa narodowego":"",
-                    "gazetapl":"",
-                    "gazeta":"",
-                    "fot":""}
-    for i in range(len(data.Text)):
-        for word, initial in dict_replacements.items():
-            data.Text[i] = data.Text[i].lower().replace(word.lower(), initial)
+    content = data.Content
+    if "Author" in data.columns:
+        authors = list(data.Author.unique())
+        authors = [author.lower() for author in authors]
+        for i in range(len(content)):
+            for author in authors:
+                content[i] = content[i].replace(author, "")
 
+
+    # Removing punctuation signs from texts
+    punctuation = ["/", ".", ":", ",", ")", "(", "\"", "_", "-", "?", "!", "...", "„", "”", "–", "—", "…", "[", "]",
+                   "^", "'"]
+    for i in range(len(content)):
+        for sign in punctuation:
+            content[i] = content[i].replace(sign, "")
+            content[i] = content[i].replace("  ", " ")
+
+    # dictionary with terms to clear from texts
+    dict_replacements = {"czytaj także": "",
+                         "czytaj też wywiad": "",
+                         "wpolityce.pl": "",
+                         "wpolitycepl": "",
+                         "czytaj również tylko u nas": "",
+                         "nasz wywiad": "",
+                         "czytaj również": "",
+                         "niezaleznapl": "",
+                         "niezalezna.pl": "",
+                         "niezależna.pl": "",
+                         "niezależnapl": "",
+                         "regulamin": "",
+                         "portal": "",
+                         "portalu": "",
+                         "pch24pl": "",
+                         "Copyright 2020 by STOWARZYSZENIE KULTURY CHRZEŚCIJAŃSKIEJ IM KS PIOTRA SKARGI": "",
+                         "forum": "",
+                         "okopress": "",
+                         "oku": "",
+                         "press": "",
+                         "Ten artykuł nie powstałby gdyby nie wsparcie naszych darczyńców Dołącz do nich i pomóż nam publikować więcej tekstów które lubisz czytaćDziennikTematyPiszą dla nasPodcastyMultimediaNarkopolitykaO Krytyce PolitycznejKontaktWspieraj nas© 2020 Krytyka Polityczna Wszystkie prawa zastrzeżone | Partner technologiczny MeverywhereplSzukajKrajŚwiatKulturaGospodarkaPiekło kobietKoronawirusWybory w USAKlimatPracaWspieraj nas KsięgarniaO nasO Krytyce PolitycznejJesteśmy stowarzyszeniemKontaktAbout usŚwietlica w GdańskuŚwietlica w CieszynieJasna 10 Świetlica w WarszawieInstytutBaza ekspertek Akceptuję regulamin i politykę prywatności'": "",
+                         "krytyka": "",
+                         "krytyce": "",
+                         "polityczna": "",
+                         "politycznej": "",
+                         "dziękujemyklub inteligencji katolickiejfreta 2024a00227 warszawapolityka prywatności ***redakcja@\u200bkikwawplfacebookcommagazynkontaktplpoglądy wyrażane przez autorkii autorów tekstów nie są tożsamez poglądami wydawcymagazyn kontakt korzysta z dofinansowania pochodzącego z niwcrso w ramach proo3 na lata 20182030 dofinansowano ze środkówministra kulturyi dziedzictwa narodowego": "",
+                         "gazetapl": "",
+                         "gazeta": "",
+                         "fot": "",
+                         "Rozwijamy nasz serwis dzięki wyświetlaniu reklamBlokując reklamy nie pozwalasz nam tworzyć wartościowych treści Wyłącz AdBlock i odśwież stronę Żaden utwór zamieszczony w serwisie nie może być powielany i rozpowszechniany lub dalej rozpowszechniany w jakikolwiek sposób w tym także elektroniczny lub mechaniczny na jakimkolwiek polu eksploatacji w jakiejkolwiek formie włącznie z umieszczaniem w Internecie bez pisemnej zgody właściciela praw Jakiekolwiek użycie lub wykorzystanie utworów w całości lub w części z naruszeniem prawa tzn bez właściwej zgody jest zabronione pod groźbą kary i może być ścigane prawnie": "",
+                         "Żaden utwór zamieszczony w serwisie nie może być powielany i rozpowszechniany lub dalej rozpowszechniany w jakikolwiek sposób w tym także elektroniczny lub mechaniczny na jakimkolwiek polu eksploatacji w jakiejkolwiek formie włącznie z umieszczaniem w Internecie bez pisemnej zgody właściciela praw Jakiekolwiek użycie lub wykorzystanie utworów w całości lub w części z naruszeniem prawa tzn bez właściwej zgody jest zabronione pod groźbą kary i może być ścigane prawnie": "",
+                         "Dofinansowano ze środków Ministra Kultury i Dziedzictwa Narodowego pochodzących z Funduszu Promocji Kultury Ten utwór z wyłączeniem grafik jest udostępniony na licencji Creative Commons Uznanie Autorstwa 40 Międzynarodowe Zachęcamy do jego przedruku i wykorzystania Prosimy jednak o zachowanie informacji o finansowaniu artykułu oraz podanie linku do naszej strony": "",
+                         "super express": "",
+                         "klub jagiellonski": ""
+                         }
+    for i in range(len(content)):
+        for word, initial in dict_replacements.items():
+            content[i] = content[i].lower().replace(word.lower(), initial)
+
+    for i in range(len(content)):
+        if "**" in content[i]:
+            content_split = content[i].split("**")
+            content[i] = content[0]
+
+    data.Content = content
+
+    return data
 
 # In[ ]:
 
