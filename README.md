@@ -3,7 +3,7 @@
 Data preparation 
 
 Data was scraped from searchpages of chosen polish portals. Datasets contain articles from 2020. Different notebook was created for scraping each page, as html code 
-differed between them. Scrapers are written using Python's BeautifulSoup package. All are avaliable for review in different folder.
+differed between them. Scrapers are written using Python's BeautifulSoup package. All are avaliable for review in Scrapers+Data folder.
 
 Project goals 
 
